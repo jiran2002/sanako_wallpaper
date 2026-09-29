@@ -1,0 +1,25 @@
+{
+  "name": "wallpaper-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "开源在线壁纸分享站：分类 / 标签 / 图片元信息自动提取 / 下载 / 多存储源（本机、S3、Cloudflare R2 账号池）",
+  "type": "module",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,web -c cyan,magenta \"npm -w server run dev\" \"npm -w web run dev\"",
+    "dev:server": "npm -w server run dev",
+    "dev:web": "npm -w web run dev",
+    "build": "npm -w web run build",
+    "start": "npm -w server run start",
+    "seed": "npm -w server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.env.local
+
+# 运行时数据（SQLite 数据库 + 本地上传的图片）
+server/data/
+# 数据库备份（含用户与存储配置等敏感数据，禁止公开）
+server/backups/
+
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

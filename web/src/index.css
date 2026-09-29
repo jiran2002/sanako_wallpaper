@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* Tailwind v4：用 class 控制深色模式（document.documentElement.classList） */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* 深色图库底色：比 slate-950 略提亮，避免纯黑发闷 */
+  --color-ink-950: #0b0e14;
+  --color-ink-900: #11151d;
+  --color-ink-850: #161b25;
+  --color-ink-800: #1d222e;
+  --color-ink-700: #2a3140;
+
+  /* 主色：按钮 / 链接 / 选中态统一使用 primary-* */
+  --color-primary-50: #eff4ff;
+  --color-primary-100: #dbe6ff;
+  --color-primary-200: #bdd2ff;
+  --color-primary-300: #90b3ff;
+  --color-primary-400: #5b8aff;
+  --color-primary-500: #165dff;
+  --color-primary-600: #0b46d9;
+  --color-primary-700: #0a37ae;
+  --color-primary-800: #0d3089;
+  --color-primary-900: #102c6e;
+  --color-primary-950: #0a1b45;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+/* 默认浅色：深色仅在手动切换后生效 */
+body {
+  @apply bg-white text-slate-800 antialiased dark:bg-ink-950 dark:text-slate-300;
+}
+
+/* 细滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184 / 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(148 163 184 / 0.35);
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148 163 184 / 0.6);
+}
+
+/* 多列瀑布流的卡片间距（与等高网格的 gap-4 / md:gap-6 保持视觉一致） */
+.wp-columns {
+  column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .wp-columns {
+    column-gap: 1.5rem;
+  }
+}
+
+/* ============================= 后台设计系统 ============================= */
+/* 统一后台卡片 / 输入 / 按钮 / 标题的外观，页面只需组合 class，
+   避免各处 Tailwind 类名漂移导致风格不一致。整体走浅色、干净的路线。 */
+@layer components {
+  /* 页面底色：干净的浅灰，不用彩色光斑 */
+  .admin-shell {
+    background-color: #f6f7f9;
+  }
+  .dark .admin-shell {
+    background-color: #0b0e14;
+  }
+
+  /* 卡片 */
+  .admin-card {
+    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/50 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none;
+  }
+
+  /* 输入框 / 下拉框 / 文本域 */
+  .admin-input {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-primary-400 focus:ring-4 focus:ring-primary-500/10 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:placeholder:text-slate-500 dark:focus:border-primary-500 dark:focus:bg-white/10;
+  }
+
+  /* 主按钮：纯色，不用渐变 */
+  .admin-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-600 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  /* 次级按钮 */
+  .admin-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:border-primary-300 hover:text-primary-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-primary-500/50 dark:hover:text-primary-300;
+  }
+
+  /* 危险操作按钮 */
+  .admin-btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-rose-200 bg-white px-3.5 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50 disabled:opacity-50 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300 dark:hover:bg-rose-500/20;
+  }
+
+  /* 页面标题 */
+  .admin-title {
+    @apply text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100;
+  }
+  .admin-subtitle {
+    @apply mt-1 text-sm text-slate-500 dark:text-slate-400;
+  }
+
+  /* 表格 */
+  .admin-table {
+    @apply w-full text-sm;
+  }
+  .admin-thead {
+    @apply bg-slate-50 text-left text-xs font-medium text-slate-500 dark:bg-white/[0.06] dark:text-slate-400;
+  }
+  .admin-row {
+    @apply transition hover:bg-slate-50 dark:hover:bg-white/[0.04];
+  }
+
+  /* 状态胶囊 */
+  .admin-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
+
+/* 隐藏横向滚动条（分类 / 标签胶囊行） */
+.wp-scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.wp-scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------------------------- 动画 ---------------------------------- */
+@keyframes wp-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-in {
+  animation: wp-fade-in 0.2s ease-out both;
+}
+
+@keyframes wp-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-toast-in {
+  animation: wp-toast-in 0.2s ease-out both;
+}
+
+@keyframes wp-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.wp-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.wp-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.06), transparent);
+  animation: wp-shimmer 1.6s infinite;
+}
+
+/* ------------------------------- 标签跑马灯 ------------------------------- */
+/* 轨道内容需整体复制一份，位移 -50% 时才能无缝衔接 */
+@keyframes wp-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.wp-marquee {
+  animation: wp-marquee 34s linear infinite;
+}
+.wp-marquee-wrap:hover .wp-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-toast-in,
+  .wp-shimmer::after,
+  .wp-marquee {
+    animation: none;
+  }
+}
