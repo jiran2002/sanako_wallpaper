@@ -11,7 +11,7 @@
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-node%3Asqlite-003B57?logo=sqlite&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue)
 
 [界面预览](#界面预览) · [功能特性](#功能特性) · [技术栈](#技术栈) · [快速开始](#快速开始) · [API 一览](#api-一览) · [更新记录](#更新记录)
 
@@ -491,4 +491,4 @@ GET    /api/admin/search-terms                用户搜索词统计（按命中�
 
 ## License
 
-MIT
+[Apache License 2.0](LICENSE)
