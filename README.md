@@ -1,6 +1,55 @@
+<div align="center">
+
 # 壁纸集 · 开源在线壁纸分享站
 
-一个可自托管的在线壁纸分享网站，支持分类 / 标签 / 图片元信息自动提取 / 原图下载，后台可自由切换图片存储源：**本机磁盘**、**S3 兼容存储**、**Cloudflare R2（支持账号池轮询）**。
+一个可自托管的在线壁纸分享网站。支持分类 / 标签 / 图片元信息自动提取 / 原图下载，
+后台可自由切换图片存储源：**本机磁盘**、**S3 兼容存储**、**Cloudflare R2（支持账号池轮询）**。
+
+![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A5%2022.5-339933?logo=node.js&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-5-000000?logo=fastify&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-node%3Asqlite-003B57?logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+[界面预览](#界面预览) · [功能特性](#功能特性) · [技术栈](#技术栈) · [快速开始](#快速开始) · [API 一览](#api-一览) · [更新记录](#更新记录)
+
+</div>
+
+---
+
+## 界面预览
+
+### 前台
+
+![首页](docs/screenshots/01-home.jpg)
+
+| 全部壁纸 · 多维筛选 | 分类浏览 |
+| :---: | :---: |
+| ![全部壁纸](docs/screenshots/02-wallpapers.jpg) | ![分类浏览](docs/screenshots/03-category.jpg) |
+| **壁纸详情** | **详情操作 · 收藏 / 举报** |
+| ![壁纸详情](docs/screenshots/04-detail.jpg) | ![详情操作](docs/screenshots/04b-detail-actions.jpg) |
+| **大图查看器 · 缩放拖拽** | **以图搜图** |
+| ![大图查看器](docs/screenshots/08-lightbox.jpg) | ![以图搜图](docs/screenshots/05-image-search.jpg) |
+| **我的收藏 · 合集分组** | **深色模式** |
+| ![我的收藏](docs/screenshots/09-favorites.jpg) | ![深色模式](docs/screenshots/20-dark-home.jpg) |
+| **登录** | **注册 · 邮箱验证码 / 邀请码** |
+| ![登录](docs/screenshots/06-login.jpg) | ![注册](docs/screenshots/07-register.jpg) |
+
+### 后台
+
+![仪表盘](docs/screenshots/10-admin-dashboard.jpg)
+
+| 壁纸管理 | 发布壁纸 |
+| :---: | :---: |
+| ![壁纸管理](docs/screenshots/11-admin-images.jpg) | ![发布壁纸](docs/screenshots/12-admin-upload.jpg) |
+| **内容审核** | **举报管理** |
+| ![内容审核](docs/screenshots/13-admin-audit.jpg) | ![举报管理](docs/screenshots/14-admin-reports.jpg) |
+| **存储设置 · R2 账号池** | **外观 · 网站图标** |
+| ![存储设置](docs/screenshots/15-admin-storage.jpg) | ![网站图标](docs/screenshots/16-admin-logo.jpg) |
+| **站点设置** | |
+| ![站点设置](docs/screenshots/17-admin-settings.jpg) | |
 
 ## 功能特性
 
@@ -37,6 +86,7 @@
 - 站点设置：标题、描述、页脚补充说明、ICP 备案号；修改管理员密码；**用户注册**（开启开关 + 注册验证码「无需 / 邮箱 / 图形」三选 + 邀请码「无需 / 选填 / 强制」三选）；**下载设置**（登录后下载 + 游客下载图形验证码 + 游客每日下载次数限制）；**邮箱设置**（SMTP 服务器，用于发送注册验证码，含连接测试与发送测试邮件）
 - 邀请码管理：单个自定义邀请码 + 批量生成（可设使用次数上限 / 有效期 / 备注），支持删除与点击复制，注册时按邀请码模式校验
 - 外观管理：首页 Banner（满屏宽、自定义背景图 + 铺满 / 拉伸 / 自适应三种布局、高度、文字遮罩、搜索框与热门标签开关，带实时预览）与页脚（宣传语 + 栏目、栏目内链接及「所有人 / 仅登录 / 仅游客 / 仅管理员」可见性、说明文字）；以及网站 Logo（自定义上传图标，大小自适应，未设置时前台显示站点标题）
+- 后台导航折叠分组（壁纸管理 / 分类与标签 / 外观管理 / 系统设置收进二级菜单，默认收起）
 
 **图片元信息自动提取**（上传时自动完成，无需手动填写）
 - 宽 × 高（用于瀑布流占位，避免布局跳动）
